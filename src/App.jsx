@@ -5,7 +5,6 @@ import SlideRenderer from './components/SlideRenderer';
 import SpeakerNotesDrawer from './components/SpeakerNotesDrawer';
 import SlideOverviewModal from './components/SlideOverviewModal';
 import ImageModal from './components/ImageModal';
-import QAModal from './components/QAModal';
 import SourcesModal from './components/SourcesModal';
 import { slidesData } from './data/slidesData';
 
@@ -13,7 +12,6 @@ export default function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [isOverviewOpen, setIsOverviewOpen] = useState(false);
-  const [isQAOpen, setIsQAOpen] = useState(false);
   const [isSourcesOpen, setIsSourcesOpen] = useState(false);
   const [zoomedImage, setZoomedImage] = useState(null);
   const [zoomedTitle, setZoomedTitle] = useState('');
@@ -77,9 +75,6 @@ export default function App() {
       } else if (e.key === 'o' || e.key === 'O' || e.key === 'щ' || e.key === 'Щ') {
         e.preventDefault();
         setIsOverviewOpen((prev) => !prev);
-      } else if (e.key === 'q' || e.key === 'Q' || e.key === 'й' || e.key === 'Й') {
-        e.preventDefault();
-        setIsQAOpen((prev) => !prev);
       } else if (e.key === 'b' || e.key === 'B' || e.key === 'и' || e.key === 'И') {
         e.preventDefault();
         setIsSourcesOpen((prev) => !prev);
@@ -89,7 +84,6 @@ export default function App() {
       } else if (e.key === 'Escape') {
         setIsNotesOpen(false);
         setIsOverviewOpen(false);
-        setIsQAOpen(false);
         setIsSourcesOpen(false);
         setZoomedImage(null);
       }
@@ -142,7 +136,6 @@ export default function App() {
         onToggleNotes={() => setIsNotesOpen(!isNotesOpen)}
         isNotesOpen={isNotesOpen}
         onToggleOverview={() => setIsOverviewOpen(true)}
-        onToggleQA={() => setIsQAOpen(true)}
         onToggleSources={() => setIsSourcesOpen(!isSourcesOpen)}
         isFullscreen={isFullscreen}
         onToggleFullscreen={toggleFullscreen}
@@ -192,11 +185,6 @@ export default function App() {
         onClose={() => setZoomedImage(null)}
         image={zoomedImage}
         title={zoomedTitle}
-      />
-
-      <QAModal
-        isOpen={isQAOpen}
-        onClose={() => setIsQAOpen(false)}
       />
 
       <SourcesModal

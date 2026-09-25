@@ -1,29 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  BookOpen, 
+import {
+  BookOpen,
   BookMarked,
-  Maximize, 
-  Minimize, 
-  Grid, 
-  Mic, 
-  HelpCircle, 
-  Clock, 
-  Play, 
-  Pause, 
+  Maximize,
+  Minimize,
+  Grid,
+  Mic,
+  Clock,
+  Play,
+  Pause,
   RotateCcw,
   Sparkles
 } from 'lucide-react';
 
-export default function Header({ 
-  currentSlide, 
-  totalSlides, 
-  onToggleNotes, 
-  isNotesOpen, 
-  onToggleOverview, 
-  onToggleQA,
+export default function Header({
+  currentSlide,
+  totalSlides,
+  onToggleNotes,
+  isNotesOpen,
+  onToggleOverview,
   onToggleSources,
-  isFullscreen, 
-  onToggleFullscreen 
+  isFullscreen,
+  onToggleFullscreen
 }) {
   const [seconds, setSeconds] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
@@ -138,16 +136,6 @@ export default function Header({
             <Grid className="w-3.5 h-3.5 text-gupta-gold" />
             <span className="hidden sm:inline">Огляд</span>
             <span className="text-[10px] opacity-70 hidden md:inline">[O]</span>
-          </button>
-
-          {/* Q&A Cheatsheet button */}
-          <button
-            onClick={onToggleQA}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-gupta-cardLight/70 hover:bg-gupta-cardLight text-gupta-gold border border-gupta-border transition-all"
-            title="Відповіді на запитання викладача (Q&A)"
-          >
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span className="hidden lg:inline">Q&A</span>
           </button>
 
           {/* Sources & Literature button */}

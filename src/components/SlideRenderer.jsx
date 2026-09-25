@@ -15,7 +15,7 @@ import {
   Users
 } from 'lucide-react';
 
-export default function SlideRenderer({ slide, onZoomImage }) {
+export default function SlideRenderer({ slide, onZoomImage, onOpenSources }) {
   if (!slide) return null;
 
   const isTitleSlide = slide.id === 1;
@@ -37,10 +37,17 @@ export default function SlideRenderer({ slide, onZoomImage }) {
         </div>
 
         {slide.sourceRef && (
-          <div className="hidden md:flex items-center gap-1.5 text-[11px] text-gupta-sandstoneMuted bg-gupta-dark/60 border border-gupta-border px-3 py-1 rounded-full">
-            <BookMarked className="w-3 h-3 text-gupta-bronze" />
+          <button 
+            onClick={onOpenSources}
+            className="hidden md:flex items-center gap-1.5 text-[11px] text-gupta-sandstoneMuted bg-gupta-dark/60 hover:bg-gupta-cardLight border border-gupta-border hover:border-gupta-gold px-3 py-1 rounded-full cursor-pointer transition-all group shadow-sm active:scale-95"
+            title="Натисніть, щоб переглянути повну джерельну базу та наукову літературу (B)"
+          >
+            <BookMarked className="w-3 h-3 text-gupta-bronze group-hover:text-gupta-gold transition-colors" />
             <span className="truncate max-w-xs">{slide.sourceRef}</span>
-          </div>
+            <span className="text-[10px] text-gupta-gold font-mono ml-1 px-1.5 py-0.2 rounded bg-gupta-gold/10 border border-gupta-gold/20 group-hover:bg-gupta-gold group-hover:text-gupta-dark transition-colors">
+              Джерела ↗
+            </span>
+          </button>
         )}
       </div>
 

@@ -6,6 +6,7 @@ import SpeakerNotesDrawer from './components/SpeakerNotesDrawer';
 import SlideOverviewModal from './components/SlideOverviewModal';
 import ImageModal from './components/ImageModal';
 import QAModal from './components/QAModal';
+import SourcesModal from './components/SourcesModal';
 import { slidesData } from './data/slidesData';
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [isOverviewOpen, setIsOverviewOpen] = useState(false);
   const [isQAOpen, setIsQAOpen] = useState(false);
+  const [isSourcesOpen, setIsSourcesOpen] = useState(false);
   const [zoomedImage, setZoomedImage] = useState(null);
   const [zoomedTitle, setZoomedTitle] = useState('');
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -78,6 +80,9 @@ export default function App() {
       } else if (e.key === 'q' || e.key === 'Q' || e.key === 'й' || e.key === 'Й') {
         e.preventDefault();
         setIsQAOpen((prev) => !prev);
+      } else if (e.key === 'b' || e.key === 'B' || e.key === 'и' || e.key === 'И') {
+        e.preventDefault();
+        setIsSourcesOpen((prev) => !prev);
       } else if (e.key === 'f' || e.key === 'F' || e.key === 'а' || e.key === 'А') {
         e.preventDefault();
         toggleFullscreen();
@@ -85,6 +90,7 @@ export default function App() {
         setIsNotesOpen(false);
         setIsOverviewOpen(false);
         setIsQAOpen(false);
+        setIsSourcesOpen(false);
         setZoomedImage(null);
       }
     };
@@ -137,6 +143,7 @@ export default function App() {
         isNotesOpen={isNotesOpen}
         onToggleOverview={() => setIsOverviewOpen(true)}
         onToggleQA={() => setIsQAOpen(true)}
+        onToggleSources={() => setIsSourcesOpen(!isSourcesOpen)}
         isFullscreen={isFullscreen}
         onToggleFullscreen={toggleFullscreen}
       />
@@ -149,6 +156,7 @@ export default function App() {
             setZoomedImage(img);
             setZoomedTitle(title);
           }}
+          onOpenSources={() => setIsSourcesOpen(true)}
         />
       </main>
 
@@ -189,6 +197,11 @@ export default function App() {
       <QAModal
         isOpen={isQAOpen}
         onClose={() => setIsQAOpen(false)}
+      />
+
+      <SourcesModal
+        isOpen={isSourcesOpen}
+        onClose={() => setIsSourcesOpen(false)}
       />
     </div>
   );

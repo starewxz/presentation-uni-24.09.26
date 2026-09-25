@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
+  BookMarked,
   Maximize, 
   Minimize, 
   Grid, 
@@ -20,6 +21,7 @@ export default function Header({
   isNotesOpen, 
   onToggleOverview, 
   onToggleQA,
+  onToggleSources,
   isFullscreen, 
   onToggleFullscreen 
 }) {
@@ -146,6 +148,17 @@ export default function Header({
           >
             <HelpCircle className="w-3.5 h-3.5" />
             <span className="hidden lg:inline">Q&A</span>
+          </button>
+
+          {/* Sources & Literature button */}
+          <button
+            onClick={onToggleSources}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-gupta-cardLight/70 hover:bg-gupta-cardLight text-gupta-sandstone hover:text-gupta-gold border border-gupta-border transition-all"
+            title="Джерела та наукова література (гаряча клавіша: B)"
+          >
+            <BookMarked className="w-3.5 h-3.5 text-gupta-bronze" />
+            <span className="hidden sm:inline">Джерела</span>
+            <span className="text-[10px] opacity-70 hidden md:inline">[B]</span>
           </button>
 
           {/* Fullscreen toggle */}
